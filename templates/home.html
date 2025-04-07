@@ -1,28 +1,119 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Gurijala Family Tree</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Tree - Sateesh Gurijala</title>
+
+    <!-- Leaflet.js for interactive map-like features -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <style>
+        /* General body and page styling */
         body {
-            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: linear-gradient(135deg, #e1e1e1, #c0c0c0);  /* Background gradient */
+            height: 100vh;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Centering content inside the page */
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+        }
+
+        /* Styling for the name box */
+        .name-box {
+            padding: 50px;
+            background-color: rgba(0, 0, 0, 0.7);  /* Semi-transparent background */
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            max-width: 500px;
             text-align: center;
         }
-        .member {
-            margin: 20px;
+
+        /* Profile picture styling (rounded) */
+        .name-box img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            margin-bottom: 20px;
+        }
+
+        /* Heading styling */
+        .name-box h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        /* Styling for the cursor position box */
+        #cursor-position {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
             padding: 10px;
-            border: 2px solid #333;
-            display: inline-block;
-            cursor: pointer;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            font-size: 1rem;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
     </style>
 </head>
 <body>
-    <h1>Welcome to the Gurijala Family Tree</h1>
-    <div id="tree">
-        <div class="member" onclick="window.location.href='/member/1'">
-            <img src="https://via.placeholder.com/100" alt="Member Photo"><br>
-            <strong>Sateesh Gurijala</strong>
-        </div>
+
+<!-- Interactive Map Area -->
+<div id="map" style="width: 100%; height: 100%;"></div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<script>
+    /* Leaflet map setup for zooming and dragging */
+    var map = L.map('map', {
+        zoomControl: false,   // Disable zoom buttons
+        minZoom: 1,           // Minimum zoom level
+        maxZoom: 3            // Maximum zoom level
+    }).setView([0, 0], 1);   // Initial position (centered)
+
+    /* Set up the tile layer (the background image for map) */
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    /* Enable dragging and zooming */
+    map.dragging.enable();
+    map.zoomControl.enable();
+</script>
+
+<!-- Cursor position tracker -->
+<div id="cursor-position">Cursor: (0, 0)</div>
+
+<script>
+    /* Update the cursor position dynamically */
+    var cursorPositionElement = document.getElementById('cursor-position');
+
+    document.addEventListener('mousemove', function(event) {
+        var x = event.clientX;
+        var y = event.clientY;
+        cursorPositionElement.textContent = 'Cursor: (' + x + ', ' + y + ')';
+    });
+</script>
+
+<!-- Your Profile Information -->
+<div class="content">
+    <div class="name-box">
+        <!-- Replace with your actual photo path -->
+        <img src="path/to/your/photo.jpg" alt="Sateesh Gurijala">
+        <h1>Sateesh Gurijala</h1>
     </div>
+</div>
+
 </body>
 </html>
