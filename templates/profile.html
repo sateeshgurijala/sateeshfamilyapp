@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Member Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            padding: 20px;
+        }
+        .profile-card {
+            border: 1px solid #ccc;
+            padding: 30px;
+            max-width: 500px;
+            margin: auto;
+            text-align: center;
+        }
+        .profile-card img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-card">
+        <img src="{{ member.image }}" alt="Profile Photo">
+        <h2>{{ member.name }}</h2>
+        <p><strong>Relation:</strong> {{ member.relation }}</p>
+        <p><strong>Bio:</strong> {{ member.bio }}</p>
+        <a href="/">← Back to Home</a>
+    </div>
+</body>
+</html>
